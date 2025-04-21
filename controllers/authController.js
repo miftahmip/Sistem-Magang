@@ -1,22 +1,44 @@
-const db = require('../models');
-const bcrypt = require('bcryptjs');
-
-exports.loginForm = (req, res) => {
-  res.render('/login');
-};
+const { User } = require('../models'); // Pakai dari models/index.js
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 exports.login = async (req, res) => {
   const { email, password } = req.body;
+
   try {
-    const user = await db.User.findOne({ where: { email } });
-    if (user && await bcrypt.compare(password, user.password)) {
-      req.session.user = user;
-      res.redirect('/home');
+    console.log('Menerima data login:', email, password);
+
+    const user = await User.findOne({ where: { email } });
+
+    if (!user) {
+      return res.render('login', { error: 'Email tidak ditemukan' });
+    }
+
+    console.log('Data user ditemukan:', user);
+
+    const match = await bcrypt.compare(password, user.password);
+    if (!match) {
+      return res.render('login', { error: 'Password salah' });
+    }
+
+    const token = jwt.sign(
+      { id: user.id_user, role: user.role },
+      process.env.JWT_SECRET,
+      { expiresIn: '1h' }
+    );
+
+    res.cookie('token', token, { httpOnly: true });
+
+    if (user.role === 'admin') {
+      return res.redirect('/admin/dataAkun');
+    } else if (user.role === 'peserta') {
+      return res.redirect('/peserta/Absensi');
     } else {
-      res.status(401).send('Invalid email or password');
+      return res.render('login', { error: 'Role tidak dikenali' });
     }
   } catch (error) {
-    console.error(error);
-    res.status(500).send('Internal Server Error');
+    console.error('Error saat login:', error); // Tampilkan detail error di terminal
+    return res.render('login', { error: 'Terjadi kesalahan server' });
   }
 };

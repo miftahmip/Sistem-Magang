@@ -1,37 +1,35 @@
-exports.login = async (req, res) => {
-    const { email, password } = req.body;
-    const { User } = require('../models/user');
-  
-    try {
-      const user = await User.findOne({ where: { email } });
-  
-      if (!user) {
-        return res.render('login', { error: 'Email tidak ditemukan' });
-      }
-  
-      const match = await bcrypt.compare(password, user.password);
-      if (!match) {
-        return res.render('login', { error: 'Password salah' });
-      }
-  
-      const token = jwt.sign(
-        { id: user.id_user, role: user.role },
-        process.env.JWT_SECRET,
-        { expiresIn: '1h' }
-      );
-  
-      res.cookie('token', token, { httpOnly: true });
-  
-      // Arahkan ke halaman sesuai role
-      if (user.role === 'admin') {
-        return res.redirect('/admin/dataAkun');
-      } else if (user.role === 'peserta') {
-        return res.redirect('/peserta/Absensi');
-      } else {
-        return res.render('login', { error: 'Role tidak dikenali' });
-      }
-    } catch (error) {
-      console.error(error); // biar error-nya keliatan di terminal
-      return res.render('login', { error: 'Terjadi kesalahan server' });
-    }
-  };
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
+
+// Middleware untuk verifikasi token
+exports.verifyToken = (req, res, next) => {
+  const token = req.cookies.token;
+
+  if (!token) {
+    return res.redirect('/');
+  }
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = decoded;
+    next();
+  } catch (err) {
+    return res.redirect('/');
+  }
+};
+
+// Middleware khusus admin
+exports.isAdmin = (req, res, next) => {
+  if (req.user.role !== 'admin') {
+    return res.status(403).send('Akses ditolak: Bukan admin');
+  }
+  next();
+};
+
+// Middleware khusus peserta
+exports.isPeserta = (req, res, next) => {
+  if (req.user.role !== 'peserta') {
+    return res.status(403).send('Akses ditolak: Bukan peserta');
+  }
+  next();
+};
