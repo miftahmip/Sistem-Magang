@@ -1,9 +1,6 @@
 module.exports = {
     content: [
        './views/*.{html,js}',
-       './views/KTU/*.{html,js}',
-       './views/*.{html,js}',
-        'node_modules/preline/dist/*.js',
     ],
     theme: {
       extend: {
