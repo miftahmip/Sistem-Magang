@@ -1,0 +1,23 @@
+<%- include('layout/sidebar') %>
+<div class="ml-64 p-8">
+  <h1 class="text-xl font-bold mb-4">Presensi Magang</h1>
+  <form action="/presensi" method="post" class="bg-white rounded-xl shadow-md p-6 space-y-4 w-full max-w-xl">
+    <input type="text" name="nim" placeholder="Nomor Induk Mahasiswa/ Siswa*" class="w-full input input-bordered" required>
+    <input type="text" name="nama_lengkap" placeholder="Nama Lengkap*" class="w-full input input-bordered" required>
+    <input type="text" name="asal_institusi" placeholder="Asal Institusi*" class="w-full input input-bordered" required>
+    <input type="text" name="jurusan" placeholder="Jurusan*" class="w-full input input-bordered" required>
+    <input type="text" name="no_telepon" placeholder="No. Telepon*" class="w-full input input-bordered" required>
+    <input type="date" name="tanggal" class="w-full input input-bordered" required>
+    <select name="status_kehadiran" class="w-full input input-bordered" required>
+      <option value="">Status Kehadiran*</option>
+      <option value="hadir">Hadir</option>
+      <option value="izin">Izin</option>
+      <option value="sakit">Sakit</option>
+    </select>
+    <textarea name="tanda_tangan" placeholder="Tanda Tangan*" class="w-full textarea textarea-bordered h-24" required></textarea>
+    <div class="flex justify-between">
+      <button type="reset" class="btn">Reset</button>
+      <button type="submit" class="btn btn-primary">Simpan</button>
+    </div>
+  </form>
+</div>

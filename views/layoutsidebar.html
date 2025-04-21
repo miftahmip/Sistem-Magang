@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard DSI</title>
+  <link href="../src/output.css" rel="stylesheet">
+</head>
+<body class="flex h-screen bg-gray-50">
+  <!-- Sidebar -->
+  <aside class="w-64 bg-blue-100 text-gray-800 p-4 flex flex-col">
+    <div class="mb-6">
+      <img src="/logo.png" alt="Logo PDSI" class="w-28 mb-2">
+    </div>
+    
+    <div class="mb-6">
+      <div class="flex items-center space-x-2">
+        <div class="w-10 h-10 rounded-full bg-blue-900 flex items-center justify-center text-white">A</div>
+        <div>
+          <div class="font-bold text-sm">Admin 01</div>
+          <div class="text-xs text-gray-600">Admin</div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="space-y-4 mt-4">
+      <a href="#" class="flex items-center space-x-2 hover:text-blue-600">
+        <img src="/public/images/logo_absen.jpg" alt="Absensi" class="w-5 h-5 object-cover rounded" />
+        <span>Absensi</span>
+      </a>
+      <a href="#" class="flex items-center space-x-2 hover:text-blue-600">
+        <img src="/public/images/logo_nda.jpg" alt="NDA" class="w-5 h-5 object-cover rounded" />
+        <span>NDA</span>
+      </a>
+      <a href="#" class="flex items-center space-x-2 hover:text-blue-600">
+        <img src="/public/images/logo_tugas.jpg" alt="Tugas" class="w-5 h-5 object-cover rounded" />
+        <span>Tugas</span>
+      </a>
+      <a href="#" class="flex items-center space-x-2 hover:text-blue-600">
+        <img src="/public/images/logo_logbook.jpg" alt="logbook" class="w-5 h-5 object-cover rounded" />
+        <span>Log Book</span>
+      </a>
+      <a href="#" class="flex items-center space-x-2 hover:text-blue-600">
+        <img src="/public/images/logo_laporan_akhir.jpg" alt="Laporan Akhir" class="w-5 h-5 object-cover rounded" />
+        <span>Laporan Akhir</span>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="flex-1 p-6">
+    <%- body %>
+  </main>
+</body>
+</html>

@@ -1,0 +1,11 @@
+<%- include('layout/sidebar') %>
+<div class="ml-64 p-8">
+  <h1 class="text-xl font-bold mb-4">Konfirmasi Hapus</h1>
+  <form action="/hapus-kegiatan" method="post" class="bg-white p-6 rounded-xl shadow-md w-full max-w-md">
+    <p class="mb-4">Apakah anda yakin ingin menghapus kegiatan ini?</p>
+    <div class="flex gap-4 justify-end">
+      <button type="submit" class="btn btn-error">Hapus</button>
+      <a href="/logbook" class="btn">Batal</a>
+    </div>
+  </form>
+</div>
