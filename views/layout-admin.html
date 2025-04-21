@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100">
+    <div class="flex h-screen">
+      <!-- Sidebar -->
+      <aside class="w-64 bg-blue-100 p-4 flex flex-col">
+        <!-- Logo -->
+        <div class="flex items-center justify-center space-x-2 mb-6">
+          <img src="/images/logo-kemendag.png" alt="Kemendag" class="h-10" />
+          <img src="/images/logo-pdsi.png" alt="PDSI" class="h-10" />
+        </div>
+
+        <hr class="border-t border-gray-400 mb-4" />
+
+        <!-- Profile -->
+        <div class="flex items-center space-x-3 mb-6 px-2">
+          <div class="bg-gray-300 w-10 h-10 rounded-full flex items-center justify-center">
+            <span class="text-lg font-bold text-white">A</span>
+          </div>
+          <div>
+            <div class="font-bold text-sm">Admin 01</div>
+            <div class="text-xs text-gray-600">Miftahul Janah</div>
+          </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="space-y-4">
+          <a href="#" class="flex items-center space-x-3 hover:text-blue-600">
+            <img src="/images/peserta.jpg" class="w-5 h-5 rounded" alt="Peserta" />
+            <span>Data Peserta</span>
+          </a>
+
+          <a href="#" class="flex items-center space-x-3 hover:text-blue-600">
+            <img src="/images/nda.jpg" class="w-5 h-5 rounded" alt="NDA" />
+            <span>Data NDA</span>
+          </a>
+
+          <a href="#" class="flex items-center space-x-3 hover:text-blue-600">
+            <img src="/images/absensi.jpg" class="w-5 h-5 rounded" alt="Absensi" />
+            <span>Data Absensi</span>
+          </a>
+
+          <a href="#" class="flex items-center space-x-3 hover:text-blue-600">
+            <img src="/images/logbook.jpg" class="w-5 h-5 rounded" alt="Log Book" />
+            <span>Data LogBook</span>
+          </a>
+
+          <a href="#" class="flex items-center space-x-3 hover:text-blue-600">
+            <img src="/images/laporan.jpg" class="w-5 h-5 rounded" alt="Laporan" />
+            <span>Data Laporan Akhir</span>
+          </a>
+
+          <a href="#" class="flex items-center space-x-3 hover:text-blue-600">
+            <img src="/images/sertifikat.jpg" class="w-5 h-5 rounded" alt="Sertifikat" />
+            <span>Sertifikat Magang</span>
+          </a>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="flex-1 p-6 overflow-y-auto">
+        <h1 class="text-2xl font-bold">Selamat datang, Admin!</h1>
+        <!-- Konten halaman admin bisa ditaruh di sini -->
+      </main>
+    </div>
+  </body>
+</html>
