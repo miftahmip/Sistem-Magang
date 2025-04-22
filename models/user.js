@@ -3,7 +3,10 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     static associate(models) {
-      // associations bisa ditaruh di sini
+      User.hasOne(models.Peserta, {
+        foreignKey: 'id_user',
+        as: 'peserta'
+      });
     }
   }
   User.init(
@@ -32,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
       modelName: 'User',
       tableName: 'User',
       timestamps: true
-    }
+    } 
   );
   return User;
 };

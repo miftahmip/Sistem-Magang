@@ -1,0 +1,148 @@
+<% layout('layout-admin') %>
+
+<h2 class="text-xl font-bold mb-4 text-center">
+  <%= pesertaEdit ? 'Edit Data Peserta Magang' : 'Formulir Data Peserta Magang' %>
+</h2>
+
+<form
+  action="<%= pesertaEdit ? '/admin/akun/edit/' + pesertaEdit.id_peserta : '/admin/akun' %>"
+  method="POST"
+  class="bg-white p-6 rounded shadow-md space-y-4 max-w-4xl mx-auto"
+>
+  <% if (pesertaEdit) { %>
+    <input type="hidden" name="userId" value="<%= pesertaEdit.user.id_user %>" />
+  <% } %>
+
+  <input
+    type="text"
+    name="namaLengkap"
+    placeholder="Nama Lengkap"
+    class="w-full p-2 border rounded"
+    value="<%= pesertaEdit ? pesertaEdit.nama : '' %>"
+    required
+  />
+  <input
+    type="email"
+    name="email"
+    placeholder="Email"
+    class="w-full p-2 border rounded"
+    value="<%= pesertaEdit ? pesertaEdit.user.email : '' %>"
+    required
+  />
+  <input
+    type="text"
+    name="instansi"
+    placeholder="Instansi Asal"
+    class="w-full p-2 border rounded"
+    value="<%= pesertaEdit ? pesertaEdit.instansi : '' %>"
+    required
+  />
+  <input
+    type="text"
+    name="jurusan"
+    placeholder="Jurusan"
+    class="w-full p-2 border rounded"
+    value="<%= pesertaEdit ? pesertaEdit.jurusan : '' %>"
+    required
+  />
+  <input
+    type="text"
+    name="no_hp"
+    placeholder="No HP"
+    class="w-full p-2 border rounded"
+    value="<%= pesertaEdit ? pesertaEdit.no_hp : '' %>"
+    required
+  />
+  <input
+    type="text"
+    name="alamat"
+    placeholder="Alamat"
+    class="w-full p-2 border rounded"
+    value="<%= pesertaEdit ? pesertaEdit.alamat : '' %>"
+    required
+  />
+  <div class="flex space-x-2">
+    <input
+      type="date"
+      name="periodeMulai"
+      class="w-full p-2 border rounded"
+      value="<%= pesertaEdit ? pesertaEdit.tanggal_mulai : '' %>"
+      required
+    />
+    <span class="flex items-center">s.d</span>
+    <input
+      type="date"
+      name="periodeSelesai"
+      class="w-full p-2 border rounded"
+      value="<%= pesertaEdit ? pesertaEdit.tanggal_selesai : '' %>"
+      required
+    />
+  </div>
+  <input
+    type="text"
+    name="pembimbing"
+    placeholder="Pembimbing"
+    class="w-full p-2 border rounded"
+    value="<%= pesertaEdit ? pesertaEdit.pembimbing : '' %>"
+    required
+  />
+  <input
+    type="password"
+    name="password"
+    placeholder="Password"
+    class="w-full p-2 border rounded"
+    <%= pesertaEdit ? '' : 'required' %>
+  />
+
+  <div class="flex justify-end space-x-2">
+    <button type="reset" class="bg-gray-200 px-4 py-2 rounded">Reset</button>
+    <button type="submit" class="bg-[#3A5985] text-white px-4 py-2 rounded">
+      <%= pesertaEdit ? 'Update' : 'Simpan' %>
+    </button>
+  </div>
+</form>
+
+<h2 class="text-xl font-bold mt-10 mb-4">Data Peserta Magang</h2>
+<div class="overflow-x-auto">
+  <table class="w-full table-auto bg-white rounded shadow-md">
+    <thead>
+      <tr class="bg-[#3A5985] text-white">
+        <th class="px-4 py-2">Nama Lengkap</th>
+        <th class="px-4 py-2">Email</th>
+        <th class="px-4 py-2">Instansi</th>
+        <th class="px-4 py-2">Jurusan</th>
+        <th class="px-4 py-2">No HP</th>
+        <th class="px-4 py-2">Alamat</th>
+        <th class="px-4 py-2">Periode</th>
+        <th class="px-4 py-2">Pembimbing</th>
+        <th class="px-4 py-2">Aksi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% akunList.forEach((akun) => { %>
+        <tr class="border-t">
+          <td class="px-4 py-2"><%= akun.nama %></td>
+          <td class="px-4 py-2"><%= akun.user.email %></td>
+          <td class="px-4 py-2"><%= akun.instansi %></td>
+          <td class="px-4 py-2"><%= akun.jurusan %></td>
+          <td class="px-4 py-2"><%= akun.no_hp %></td>
+          <td class="px-4 py-2"><%= akun.alamat %></td>
+          <td class="px-4 py-2"><%= akun.tanggal_mulai %> s.d <%= akun.tanggal_selesai %></td>
+          <td class="px-4 py-2"><%= akun.pembimbing %></td>
+          <td class="px-4 py-2">
+            <div class="flex space-x-2">
+                <a href="/admin/akun/edit/<%= akun.id_peserta %>" class="bg-[#22904A] text-white w-8 h-8 flex items-center justify-center rounded">
+                    <img src="/images/icon_edit.png" alt="Edit" class="w-5 h-5"> <!-- Ukuran icon disesuaikan -->
+                  </a>
+              <form action="/admin/akun/delete/<%= akun.id_peserta %>" method="POST">
+                <button type="submit" class="bg-[#F40808] text-white w-8 h-8 flex items-center justify-center rounded">
+                    <img src="/images/icon_delete.png" alt="Hapus" class="w-5 h-5"> <!-- Ukuran icon disesuaikan -->
+                  </button>
+              </form>
+            </div>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>

@@ -31,7 +31,7 @@ exports.login = async (req, res) => {
     res.cookie('token', token, { httpOnly: true });
 
     if (user.role === 'admin') {
-      return res.redirect('/admin/dataAkun');
+      return res.redirect('/admin/akun');
     } else if (user.role === 'peserta') {
       return res.redirect('/peserta/Absensi');
     } else {

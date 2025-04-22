@@ -12,53 +12,51 @@
       <aside class="w-64 bg-blue-100 p-4 flex flex-col">
         <!-- Logo -->
         <div class="flex items-center justify-center space-x-2 mb-6">
-            <img src="/public/images/logo_kemendag.png" class="w-15 h-15 object-cover rounded" />
+          <img src="/images/logo_kemendag.png" class="w-15 h-15 object-cover rounded" />
         </div>
 
         <hr class="border-t border-gray-400 mb-4" />
 
         <!-- Profile -->
-<hr class="border-t border-black-400 mb-2" />
-<div class="mb-6 -mt-1">
-  <div class="flex items-center space-x-2">
-    <div class="w-10 h-10 rounded-full bg-blue-900 flex items-center justify-center text-white">M</div>
-    <div>
-      <div class="font-bold text-sm">Admin 01</div>
-      <div class="text-xs text-gray-600">Miftahul Janah</div>
-    </div>
-  </div>
-</div>
-
+        <div class="mb-12"> <!-- Menambah margin bottom menjadi mb-12 -->
+          <div class="flex items-center space-x-2">
+            <div class="w-10 h-10 rounded-full bg-blue-900 flex items-center justify-center text-white">M</div>
+            <div>
+              <div class="font-bold text-sm">Admin 01</div>
+              <div class="text-xs text-gray-600">Miftahul Janah</div>
+            </div>
+          </div>
+        </div>
 
         <!-- Navigation -->
-        <nav class="space-y-4">
-          <a href="#" class="flex items-center space-x-3 hover:text-blue-600">
-            <img src="/public/images/icon_data_peserta.png" alt="Data Peserta" class="w-5 h-5 object-cover rounded" />
+        <nav class="space-y-6">
+          <a href="/admin/akun" class="flex items-center space-x-3 hover:text-blue-600">
+            <img src="/images/icon_data_peserta.png" alt="Data Peserta" class="w-5 h-5 object-cover rounded" />
             <span>Data Peserta</span>
           </a>
 
           <a href="#" class="flex items-center space-x-3 hover:text-blue-600">
-            <img src="/public/images/icon_data_nda.png" alt="Data NDA" class="w-5 h-5 object-cover rounded" />
+            <img src="/images/icon_data_nda.png" alt="Data NDA" class="w-5 h-5 object-cover rounded" />
             <span>Data NDA</span>
           </a>
 
           <a href="#" class="flex items-center space-x-3 hover:text-blue-600">
-            <img src="/public/images/icon_data_absensi.png" alt="Data Absensi" class="w-5 h-5 object-cover rounded" />
+            <img src="/images/icon_data_absensi.png" alt="Data Absensi" class="w-5 h-5 object-cover rounded" />
             <span>Data Absensi</span>
           </a>
 
           <a href="#" class="flex items-center space-x-3 hover:text-blue-600">
-            <img src="/public/images/icon_data_logbook.png" alt="Data LogBook" class="w-5 h-5 object-cover rounded" />
+            <img src="/images/icon_data_logbook.png" alt="Data LogBook" class="w-5 h-5 object-cover rounded" />
             <span>Data LogBook</span>
           </a>
 
           <a href="#" class="flex items-center space-x-3 hover:text-blue-600">
-            <img src="/public/images/icon_data_laporanakhir.png" alt="Data Laporan Akhir" class="w-5 h-5 object-cover rounded" />
+            <img src="/images/icon_data_laporanakhir.png" alt="Data Laporan Akhir" class="w-5 h-5 object-cover rounded" />
             <span>Data Laporan Akhir</span>
           </a>
 
           <a href="#" class="flex items-center space-x-3 hover:text-blue-600">
-            <img src="/public/images/icon_sertifikat_magang.png" alt="Sertifikat Magang" class="w-5 h-5 object-cover rounded" />
+            <img src="/images/icon_sertifikat_magang.png" alt="Sertifikat Magang" class="w-5 h-5 object-cover rounded" />
             <span>Sertifikat Magang</span>
           </a>
         </nav>
@@ -66,8 +64,7 @@
 
       <!-- Main Content -->
       <main class="flex-1 p-6 overflow-y-auto">
-        <h3 class="text-2xl font-bold">Selamat datang, Admin!</h3>
-        <!-- Konten halaman admin bisa ditaruh di sini -->
+        <%- body %>
       </main>
     </div>
   </body>
