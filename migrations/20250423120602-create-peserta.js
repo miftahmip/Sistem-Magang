@@ -2,21 +2,15 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('Peserta', {
-      id_peserta: {
-        type: Sequelize.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
-        allowNull: false
-      },
       id_user: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        primaryKey: true,
         references: {
           model: 'User',
           key: 'id_user'
         },
         onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
+        onDelete: 'CASCADE',
       },
       nama: {
         type: Sequelize.STRING,
@@ -49,6 +43,40 @@ module.exports = {
       tanggal_selesai: {
         type: Sequelize.DATEONLY,
         allowNull: false
+      },
+      nda_file: {
+        type: Sequelize.BLOB('long'),
+        allowNull: true
+      },
+      nda_status: {
+        type: Sequelize.ENUM('Dikirim', 'Belum Dikirim'),
+        defaultValue: 'Belum Dikirim'
+      },
+      laporan_akhir: {
+        type: Sequelize.STRING,
+        allowNull: true
+      },
+      status_laporan_akhir: {
+        type: Sequelize.ENUM('Dikirim', 'Belum Dikirim'),
+        defaultValue: 'Belum Dikirim'
+      },
+      id_template_sertifikat: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        references: {
+          model: 'TemplateSertifikat',
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL'
+      },
+      file_sertifikat: {
+        type: Sequelize.STRING,
+        allowNull: true
+      },
+      status_sertifikat: {
+        type: Sequelize.ENUM('Diterbitkan', 'Belum Diterbitkan'),
+        defaultValue: 'Belum Diterbitkan'
       },
       createdAt: {
         allowNull: false,

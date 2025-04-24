@@ -1,7 +1,7 @@
-<%- include('layout/sidebar') %>
+<% layout('layoutsidebar') %>
 <div class="ml-64 p-8">
   <h1 class="text-xl font-bold mb-4">Presensi Magang</h1>
-  <form action="/presensi" method="post" class="bg-white rounded-xl shadow-md p-6 space-y-4 w-full max-w-xl">
+  <form action="/absensi" method="post" class="bg-white rounded-xl shadow-md p-6 space-y-4 w-full max-w-xl">
     <input type="text" name="nim" placeholder="Nomor Induk Mahasiswa/ Siswa*" class="w-full input input-bordered" required>
     <input type="text" name="nama_lengkap" placeholder="Nama Lengkap*" class="w-full input input-bordered" required>
     <input type="text" name="asal_institusi" placeholder="Asal Institusi*" class="w-full input input-bordered" required>

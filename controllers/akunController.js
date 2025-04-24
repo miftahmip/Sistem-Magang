@@ -14,7 +14,6 @@ exports.getAllAkun = async (req, res) => {
   }
 };
 
-
 // Tambah akun baru
 exports.createAkun = async (req, res) => {
   try {
@@ -52,14 +51,13 @@ exports.createAkun = async (req, res) => {
 
 // Tampilkan form edit + data peserta lainnya
 exports.getEditForm = async (req, res) => {
-  const id = req.params.id;
+  const userId = req.params.id;
 
-  // Data peserta yang mau diedit
-  const pesertaEdit = await Peserta.findByPk(id, {
+  const pesertaEdit = await Peserta.findOne({
+    where: { id_user: userId },
     include: [{ model: User, as: 'user' }]
   });
 
-  // Semua data peserta (buat ditampilin di tabel)
   const akunList = await Peserta.findAll({ include: { model: User, as: 'user' } });
 
   res.render('dataAkun', { akunList, pesertaEdit });
@@ -73,8 +71,8 @@ exports.updateAkun = async (req, res) => {
       no_hp, alamat, pembimbing, periodeMulai, periodeSelesai
     } = req.body;
 
-    const peserta = await Peserta.findByPk(req.params.id);
-    const user = await User.findByPk(peserta.id_user);
+    const peserta = await Peserta.findOne({ where: { id_user: req.params.id } });
+    const user = await User.findByPk(req.params.id);
 
     await user.update({ email });
     await peserta.update({
@@ -98,12 +96,34 @@ exports.updateAkun = async (req, res) => {
 // Hapus akun
 exports.deleteAkun = async (req, res) => {
   try {
-    const peserta = await Peserta.findByPk(req.params.id);
-    await Peserta.destroy({ where: { id_peserta: req.params.id } });
-    await User.destroy({ where: { id_user: peserta.id_user } });
+    await Peserta.destroy({ where: { id_user: req.params.id } });
+    await User.destroy({ where: { id_user: req.params.id } });
     res.redirect('/admin/akun');
   } catch (err) {
     console.error(err);
     res.status(500).send('Gagal menghapus data akun.');
+  }
+};
+
+exports.downloadNDA = async (req, res) => {
+  const userId = req.params.id;
+
+  try {
+    const peserta = await Peserta.findOne({ where: { id_user: userId } });
+
+    if (!peserta || !peserta.nda_file) {
+      return res.status(404).send('NDA tidak ditemukan.');
+    }
+
+    const buffer = peserta.nda_file;
+    const namaFile = `NDA_${peserta.nama.replace(/\s+/g, '_')}.pdf`; // ganti spasi jadi underscore biar aman
+
+    res.setHeader('Content-Type', 'application/pdf');
+    res.setHeader('Content-Disposition', `attachment; filename="${namaFile}"`);
+    res.send(buffer);
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Gagal mengunduh file NDA.');
   }
 };

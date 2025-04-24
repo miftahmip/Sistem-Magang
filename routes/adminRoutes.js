@@ -18,4 +18,7 @@ router.post('/akun/edit/:id', verifyToken, isAdmin, akunController.updateAkun);
 // Proses hapus akun
 router.post('/akun/delete/:id', verifyToken, isAdmin, akunController.deleteAkun);
 
+// Route untuk download NDA
+router.get('/akun/nda/download/:id', akunController.downloadNDA);
+
 module.exports = router;

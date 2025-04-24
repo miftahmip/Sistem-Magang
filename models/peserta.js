@@ -1,14 +1,16 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Peserta = sequelize.define('Peserta', {
-    id_peserta: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true
-    },
     id_user: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      primaryKey: true,
+      references: {
+        model: 'User',
+        key: 'id_user'
+      },
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE'
     },
     nama: {
       type: DataTypes.STRING,
@@ -31,8 +33,8 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     pembimbing: {
-        type: DataTypes.STRING,
-        allowNull: false
+      type: DataTypes.STRING,
+      allowNull: false
     },
     tanggal_mulai: {
       type: DataTypes.DATEONLY,
@@ -41,6 +43,34 @@ module.exports = (sequelize, DataTypes) => {
     tanggal_selesai: {
       type: DataTypes.DATEONLY,
       allowNull: false
+    },
+    nda_file: {
+      type: DataTypes.BLOB('long'),
+      allowNull: true
+    },
+    nda_status: {
+      type: DataTypes.ENUM('Dikirim', 'Belum Dikirim'),
+      defaultValue: 'Belum Dikirim',
+    },
+    laporan_akhir: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    status_laporan_akhir: {
+      type: DataTypes.ENUM('Dikirim', 'Belum Dikirim'),
+      defaultValue: 'Belum Dikirim',
+    },
+    id_template_sertifikat: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    file_sertifikat: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    status_sertifikat: {
+      type: DataTypes.ENUM('Diterbitkan', 'Belum Diterbitkan'),
+      defaultValue: 'Belum Diterbitkan',
     }
   }, {
     tableName: 'Peserta'
@@ -52,7 +82,10 @@ module.exports = (sequelize, DataTypes) => {
       as: 'user'
     });
 
-    
+    Peserta.belongsTo(models.TemplateSertifikat, {
+      foreignKey: 'id_template_sertifikat',
+      as: 'templateSertifikat'
+    });
   };
 
   return Peserta;

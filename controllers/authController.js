@@ -33,7 +33,7 @@ exports.login = async (req, res) => {
     if (user.role === 'admin') {
       return res.redirect('/admin/akun');
     } else if (user.role === 'peserta') {
-      return res.redirect('/peserta/Absensi');
+      return res.redirect('/peserta/absensi');
     } else {
       return res.render('login', { error: 'Role tidak dikenali' });
     }

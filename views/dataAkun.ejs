@@ -5,7 +5,7 @@
 </h2>
 
 <form
-  action="<%= pesertaEdit ? '/admin/akun/edit/' + pesertaEdit.id_peserta : '/admin/akun' %>"
+    action="<%= pesertaEdit ? '/admin/akun/edit/' + pesertaEdit.id_user : '/admin/akun' %>"
   method="POST"
   class="bg-white p-6 rounded shadow-md space-y-4 max-w-4xl mx-auto"
 >
@@ -115,6 +115,7 @@
         <th class="px-4 py-2">Alamat</th>
         <th class="px-4 py-2">Periode</th>
         <th class="px-4 py-2">Pembimbing</th>
+        <th class="px-4 py-2">Status NDA</th> <!-- Tambahan kolom -->
         <th class="px-4 py-2">Aksi</th>
       </tr>
     </thead>
@@ -130,19 +131,37 @@
           <td class="px-4 py-2"><%= akun.tanggal_mulai %> s.d <%= akun.tanggal_selesai %></td>
           <td class="px-4 py-2"><%= akun.pembimbing %></td>
           <td class="px-4 py-2">
-            <div class="flex space-x-2">
-                <a href="/admin/akun/edit/<%= akun.id_peserta %>" class="bg-[#22904A] text-white w-8 h-8 flex items-center justify-center rounded">
-                    <img src="/images/icon_edit.png" alt="Edit" class="w-5 h-5"> <!-- Ukuran icon disesuaikan -->
-                  </a>
-              <form action="/admin/akun/delete/<%= akun.id_peserta %>" method="POST">
-                <button type="submit" class="bg-[#F40808] text-white w-8 h-8 flex items-center justify-center rounded">
-                    <img src="/images/icon_delete.png" alt="Hapus" class="w-5 h-5"> <!-- Ukuran icon disesuaikan -->
+            <% if (akun.nda_status === 'Dikirim') { %>
+              <span class="text-green-600 font-semibold">Dikirim</span>
+            <% } else { %>
+              <span class="text-red-600 font-semibold">Belum Dikirim</span>
+            <% } %>
+          </td>
+          <td class="px-4 py-2">
+            <div class="flex flex-col space-y-1">
+              <div class="flex space-x-2">
+                <a href="/admin/akun/edit/<%= akun.id_user %>" class="bg-[#22904A] text-white w-8 h-8 flex items-center justify-center rounded">
+                  <img src="/images/icon_edit.png" alt="Edit" class="w-5 h-5">
+                </a>
+                <form action="/admin/akun/delete/<%= akun.id_user %>" method="POST">
+                  <button type="submit" class="bg-[#F40808] text-white w-8 h-8 flex items-center justify-center rounded">
+                    <img src="/images/icon_delete.png" alt="Hapus" class="w-5 h-5">
                   </button>
-              </form>
+                </form>
+              </div>
+            
+              <% if (akun.nda_status === 'Dikirim') { %>
+                <form action="/admin/akun/nda/download/<%= akun.id_user %>" method="GET">
+                  <button type="submit" class="bg-[#3A5985] text-white flex items-center justify-center gap-1 px-3 py-2 rounded w-full">
+                    <img src="/images/icon_unduh.png" alt="Download" class="w-4 h-4" />
+                    <span class="text-xs">NDA</span>
+                  </button>
+                </form>
+              <% } %>
             </div>
           </td>
         </tr>
       <% }) %>
-    </tbody>
+    </tbody>    
   </table>
 </div>
