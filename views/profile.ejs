@@ -1,0 +1,76 @@
+<% layout('layoutsidebar') %>
+
+<div class="max-w-2xl mx-auto flex justify-center items-center my-4">
+  <div class="bg-white rounded-lg shadow-md overflow-hidden w-full">
+    <!-- Header Section -->
+    <div class="bg-[#3A5985] py-4 px-6 rounded-t-lg">
+      <div class="flex items-center justify-center space-x-3">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+        </svg>
+        <h1 class="text-xl font-bold text-white">Profil Peserta</h1>
+      </div>
+    </div>
+
+    <!-- Form Section -->
+    <div class="px-6 py-4">
+      <form action="/peserta/profile" method="POST" class="space-y-4">
+        
+        <!-- Nama Lengkap -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Nama Lengkap</label>
+          <input type="text" name="namaLengkap" value="<%= peserta.nama %>" 
+                 class="w-full py-2 px-3 border border-gray-300 rounded-md focus:ring-[#3A5985] focus:border-[#3A5985] sm:text-sm" required />
+        </div>
+
+        <!-- Instansi & Jurusan - 2 Column Layout -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <!-- Instansi -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Instansi</label>
+            <input type="text" name="instansi" value="<%= peserta.instansi %>" 
+                   class="w-full py-2 px-3 border border-gray-300 rounded-md focus:ring-[#3A5985] focus:border-[#3A5985] sm:text-sm" />
+          </div>
+
+          <!-- Jurusan -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Jurusan</label>
+            <input type="text" name="jurusan" value="<%= peserta.jurusan %>" 
+                   class="w-full py-2 px-3 border border-gray-300 rounded-md focus:ring-[#3A5985] focus:border-[#3A5985] sm:text-sm" />
+          </div>
+        </div>
+
+        <!-- No HP -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">No HP</label>
+          <input type="text" name="no_hp" value="<%= peserta.no_hp %>" 
+                 class="w-full py-2 px-3 border border-gray-300 rounded-md focus:ring-[#3A5985] focus:border-[#3A5985] sm:text-sm" />
+        </div>
+
+        <!-- Alamat -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Alamat</label>
+          <textarea name="alamat" rows="2" 
+                  class="w-full py-2 px-3 border border-gray-300 rounded-md focus:ring-[#3A5985] focus:border-[#3A5985] sm:text-sm"><%= peserta.alamat %></textarea>
+        </div>
+
+        <!-- Pembimbing -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Pembimbing</label>
+          <input type="text" name="pembimbing" value="<%= peserta.pembimbing %>" 
+                 class="w-full py-2 px-3 border border-gray-300 rounded-md focus:ring-[#3A5985] focus:border-[#3A5985] sm:text-sm" />
+        </div>
+
+        <!-- Tombol Submit -->
+        <div class="pt-4 flex justify-center">
+          <button type="submit" class="bg-[#3A5985] hover:bg-[#2d4569] text-white text-sm font-medium py-2 px-6 rounded-md flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+            </svg>
+            Simpan Perubahan
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

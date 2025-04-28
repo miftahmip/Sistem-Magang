@@ -1,7 +1,7 @@
 <!-- views/ndaPeserta.ejs -->
 <% layout('layoutsidebar') %>
 
-<div class="bg-white p-6 rounded-lg shadow-lg border border-gray-100">
+<div class="bg-white p-6 rounded-lg shadow-lg border border-gray-100 max-w-5xl mx-auto">
   <!-- Page Title -->
   <div class="mb-8 border-b pb-4">
     <h2 class="text-2xl font-bold text-gray-800">Non-Disclosure Agreement</h2>
@@ -54,62 +54,59 @@
     </div>
   </form>
 
-  <!-- Status Section -->
-  <div>
-    <div class="flex items-center mb-4">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-600 mr-2" viewBox="0 0 20 20" fill="currentColor">
-        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2h-1v-3a1 1 0 00-1-1z" clip-rule="evenodd" />
-      </svg>
-      <h3 class="text-lg font-semibold text-gray-800">Status Dokumen</h3>
+<!-- Status Section -->
+<div>
+  <div class="flex items-center mb-4">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-600 mr-2" viewBox="0 0 20 20" fill="currentColor">
+      <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2h-1v-3a1 1 0 00-1-1z" clip-rule="evenodd" />
+    </svg>
+    <h3 class="text-lg font-semibold text-gray-800">Status Dokumen</h3>
+  </div>
+
+  <!-- Update: Tambahkan max-w-md supaya tabel tidak terlalu lebar + mepet kiri -->
+  <div class="bg-gray-50 rounded-lg border border-gray-200 overflow-hidden w-full max-w-3xl">
+    <div class="bg-gray-100 px-6 py-3 flex justify-between items-center border-b border-gray-200">
+      <span class="font-medium text-gray-700">STATUS</span>
+      <span class="font-medium text-gray-700">AKSI</span>
     </div>
     
-    <div class="bg-gray-50 rounded-lg border border-gray-200 overflow-hidden">
-      <div class="bg-gray-100 px-6 py-3 flex justify-between items-center border-b border-gray-200">
-        <span class="font-medium text-gray-700">STATUS</span>
-        <span class="font-medium text-gray-700">AKSI</span>
-      </div>
-      
-      <div class="p-6">
-        <% if (nda_status === 'Dikirim') { %>
-          <div class="flex justify-between items-center">
-            <div class="flex items-center">
-              <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
-                <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                </svg>
-                Terkirim
-              </span>
-              <span class="ml-3 text-sm text-gray-500">Dokumen berhasil diunggah</span>
-            </div>
-            
-            <div class="flex space-x-3">
-                <a href="/nda/download/<%= id_user %>" style="background-color: #3A5985;" class="p-2 text-white rounded-md hover:opacity-90 transition-colors flex items-center shadow-sm">
-                    <img src="/images/icon_unduh.png" alt="Download" class="w-5 h-5" />
-                  <path fill-rule="evenodd" d="M3 17a1 1 0 001 1h12a1 1 0 001-1v-2a1 1 0 00-2 0v1H5v-1a1 1 0 00-2 0v2zm0-7a1 1 0 011-1h2a1 1 0 010 2H4a1 1 0 01-1-1zm16 0a1 1 0 01-1 1h-2a1 1 0 010-2h2a1 1 0 011 1zm1-4a1 1 0 00-1-1h-2a1 1 0 100 2h2a1 1 0 001-1zM3 6a1 1 0 011-1h2a1 1 0 010 2H4a1 1 0 01-1-1zm3-3a1 1 0 100 2h8a1 1 0 100-2H6z" clip-rule="evenodd" />
-                </svg>
-              </a>
-              
-              <form action="/nda/delete/<%= id_user %>" method="POST" onsubmit="return confirm('Yakin ingin menghapus file NDA?')">
-                <button type="submit" style="background-color: #F40808;" class="p-2 text-white rounded-md hover:opacity-90 transition-colors flex items-center shadow-sm">
-                    <img src="/images/icon_delete.png" alt="Download" class="w-5 h-5" />
-                    <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
-                  </svg>
-                </button>
-              </form>
-            </div>
+    <div class="p-6">
+      <% if (nda_status === 'Dikirim') { %>
+        <div class="flex justify-between items-center">
+          <div class="flex items-center">
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
+              <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              Terkirim
+            </span>
+            <span class="ml-3 text-sm text-gray-500">Dokumen berhasil diunggah</span>
           </div>
-        <% } else { %>
-          <div class="flex items-center justify-center h-24 text-gray-500">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-            </svg>
-            <span>Belum ada file yang diunggah.</span>
+
+          <div class="flex space-x-3">
+            <a href="/nda/download/<%= id_user %>" style="background-color: #3A5985;" class="p-2 text-white rounded-md hover:opacity-90 transition-colors flex items-center shadow-sm">
+              <img src="/images/icon_unduh.png" alt="Download" class="w-5 h-5" />
+            </a>
+
+            <form action="/nda/delete/<%= id_user %>" method="POST" onsubmit="return confirm('Yakin ingin menghapus file NDA?')">
+              <button type="submit" style="background-color: #F40808;" class="p-2 text-white rounded-md hover:opacity-90 transition-colors flex items-center shadow-sm">
+                <img src="/images/icon_delete.png" alt="Delete" class="w-5 h-5" />
+              </button>
+            </form>
           </div>
-        <% } %>
-      </div>
+        </div>
+      <% } else { %>
+        <div class="flex items-center justify-center h-24 text-gray-500">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+          </svg>
+          <span>Belum ada file yang diunggah.</span>
+        </div>
+      <% } %>
     </div>
   </div>
 </div>
+
 
 <script>
   // Display file name when selected

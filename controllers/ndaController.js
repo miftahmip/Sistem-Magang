@@ -5,7 +5,7 @@ const fsPromises = require('fs/promises');
 
 exports.renderNdaPage = async (req, res) => {
     try {
-      const id_user = req.user.id; // Ambil dari JWT yang udah didekode
+        const id_user = req.user.id_user; // Ambil dari JWT yang udah didekode
   
       const peserta = await Peserta.findOne({ where: { id_user } });
   
