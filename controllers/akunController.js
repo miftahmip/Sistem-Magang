@@ -116,7 +116,7 @@ exports.downloadNDA = async (req, res) => {
     }
 
     const buffer = peserta.nda_file;
-    const namaFile = `NDA_${peserta.nama.replace(/\s+/g, '_')}.pdf`; // ganti spasi jadi underscore biar aman
+    const namaFile = `NDA_${peserta.nama.replace(/\s+/g, '_')}.pdf`; 
 
     res.setHeader('Content-Type', 'application/pdf');
     res.setHeader('Content-Disposition', `attachment; filename="${namaFile}"`);

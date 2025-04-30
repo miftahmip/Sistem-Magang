@@ -3,39 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link href="../src/output.css" rel="stylesheet">
+    <title>Login - Magang</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        kemendag: '#3A5985',
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
 </head>
-<body class="h-screen m-0 p-0 flex justify-center items-center bg-blue-100 font-sans">
-    <div class="w-full max-w-md flex flex-col items-center">
-        <div class="text-center mb-6">
-            <img src="/images/logo_kemendag.png" alt="logo_kemendag" class="max-w-xs h-auto">
+<body class="min-h-screen m-0 p-0 flex justify-center items-center bg-gradient-to-br from-blue-50 to-blue-100">
+    <div class="w-full max-w-lg p-6">
+        <!-- Card container -->
+        <div class="bg-white rounded-xl shadow-2xl overflow-hidden">
+            <!-- Header with logo -->
+            <div class="bg-white p-6 flex justify-center">
+                <img src="/images/logo_kemendag.png" alt="logo_kemendag" class="h-24 object-contain">
+            </div>
+            
+            <!-- Welcome Message -->
+            <div class="px-6 pb-2">
+                <h1 class="text-2xl font-bold text-center text-kemendag">SELAMAT DATANG</h1>
+                <p class="text-center text-gray-600 mt-1">Silakan masuk ke akun Anda</p>
+            </div>
+
+            <!-- Form -->
+            <div class="p-6">
+                <form action="/login" method="post">
+                    <!-- Email Field -->
+                    <div class="mb-4">
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fas fa-envelope text-gray-400"></i>
+                            </div>
+                            <input type="email" id="email" name="email" required 
+                                class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-kemendag focus:border-transparent transition duration-200"
+                                placeholder="masukkan email anda">
+                        </div>
+                    </div>
+
+                    <!-- Password Field -->
+                    <div class="mb-6">
+                        <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fas fa-lock text-gray-400"></i>
+                            </div>
+                            <input type="password" id="password" name="password" required 
+                                class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-kemendag focus:border-transparent transition duration-200"
+                                placeholder="masukkan password anda">
+                        </div>
+                    </div>
+
+                    <!-- Remember Me -->
+                    <div class="flex items-center mb-6">
+                        <input type="checkbox" id="remember-me" class="h-4 w-4 text-kemendag focus:ring-kemendag border-gray-300 rounded">
+                        <label for="remember-me" class="ml-2 block text-sm text-gray-700">Ingat saya</label>
+                    </div>
+
+                    <!-- Login Button -->
+                    <div class="text-center">
+                        <button type="submit" 
+                            class="w-full py-2 px-4 bg-kemendag text-white font-medium rounded-lg hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-kemendag focus:ring-offset-2 transition duration-200 shadow-md">
+                            Login
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Footer -->
+            <div class="px-6 py-4 bg-gray-50 border-t border-gray-100 flex justify-center space-x-4">
+                <a href="#" class="text-gray-600 hover:text-kemendag">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="text-gray-600 hover:text-kemendag">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="text-gray-600 hover:text-kemendag">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="text-gray-600 hover:text-kemendag">
+                    <i class="fab fa-youtube"></i>
+                </a>
+            </div>
         </div>
-
-        <div class="w-full bg-slate-800 p-10 rounded-md shadow-md text-white">
-            <div class="text-center text-2xl font-bold mb-6">SELAMAT DATANG</div>
-
-            <form action="/login" method="post">
-                <div class="mb-5">
-                    <label for="email" class="block mb-2">Email</label>
-                    <input type="email" id="email" name="email" required 
-                        class="w-full p-3 rounded bg-blue-50 text-black focus:outline-none focus:ring-2 focus:ring-blue-300">
-                </div>
-
-                <div class="mb-5">
-                    <label for="password" class="block mb-2">Password</label>
-                    <input type="password" id="password" name="password" required 
-                        class="w-full p-3 rounded bg-blue-50 text-black focus:outline-none focus:ring-2 focus:ring-blue-300">
-                </div>
-
-                <div class="text-center mt-6">
-                    <button type="submit" 
-                        class="w-24 py-2 px-4 bg-blue-200 text-gray-800 rounded hover:bg-blue-300 transition duration-200">
-                        Login
-                    </button>
-                </div>
-            </form>
+        
+        <!-- Copyright Text -->
+        <div class="text-center mt-4 text-sm text-gray-600">
+            © 2025 Pusat Data dan Sistem Informasi. Kementerian Perdagangan Republik Indonesia.
         </div>
     </div>
 </body>

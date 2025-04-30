@@ -42,3 +42,8 @@ exports.login = async (req, res) => {
     return res.render('login', { error: 'Terjadi kesalahan server' });
   }
 };
+
+exports.logout = (req, res) => {
+  res.clearCookie('token'); // Menghapus cookie token
+  return res.redirect('/'); // Redirect ke halaman login atau landing page
+};
